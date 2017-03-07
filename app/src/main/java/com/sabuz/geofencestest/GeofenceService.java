@@ -40,6 +40,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.orhanobut.logger.Logger;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -145,6 +146,7 @@ public class GeofenceService extends IntentService {
     }
 
     private static void sendNotification(Context context, String notification) {
+        Logger.d(notification);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
 

@@ -15,7 +15,13 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.FileLogger;
+import com.orhanobut.logger.Logger;
+import com.orhanobut.logger.MultiLogAdapter;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Application extends android.app.Application {
@@ -32,7 +38,14 @@ public class Application extends android.app.Application {
     public void onCreate() {
         super.onCreate();
         app = this;
-
+        Logger.init("SabuzTest")
+                .methodCount(2)
+                .logAdapter(new MultiLogAdapter(Arrays.asList(
+                        new AndroidLogAdapter(),
+                        FileLogger.builder()
+                                .folderName("Geofances_TestLog")
+                                .logLevel(Log.VERBOSE)
+                                .build())));
     }
 
     public synchronized static Context getSharedContext() {
